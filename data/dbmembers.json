@@ -1,0 +1,54 @@
+{
+  "teamMembers": [
+    {
+      "id": "1",
+      "name": "Kevin",
+      "roles": [
+        "UX",
+        "dev frontend"
+      ],
+      "tasks": []
+    },
+    {
+      "id": "2",
+      "name": "Kevina",
+      "roles": [
+        "dev backend"
+      ],
+      "tasks": []
+    },
+    {
+      "id": "3",
+      "name": "Kevino",
+      "roles": [
+        "dev frontend",
+        "dev backend"
+      ],
+      "tasks": []
+    },
+    {
+      "id": "aa5f0f1d-25b2-4900-b2b9-01e9f7ef5d9f",
+      "name": "Tupac",
+      "roles": [
+        "UX"
+      ],
+      "tasks": []
+    },
+    {
+      "id": "e838578e-4422-47c0-974e-c3bf7df277b2",
+      "name": "John Doe",
+      "roles": [
+        "Developer"
+      ],
+      "tasks": []
+    },
+    {
+      "id": "d3c7f78c-297d-4f20-868b-2daa19f0a07c",
+      "name": "Karl",
+      "roles": [
+        "Developer"
+      ],
+      "tasks": []
+    }
+  ]
+}

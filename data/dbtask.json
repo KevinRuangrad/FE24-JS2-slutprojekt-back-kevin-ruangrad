@@ -1,0 +1,66 @@
+{
+  "tasks": [
+    {
+      "id": "101",
+      "title": "Design homepage",
+      "description": "Create the initial design for the homepage",
+      "category": "UX",
+      "status": "to do",
+      "timestamp": "2025-03-04 10:00",
+      "assigned": "Kevin"
+    },
+    {
+      "id": "102",
+      "title": "Implement homepage",
+      "description": "Develop the homepage based on the design",
+      "category": "dev frontend",
+      "status": "to do",
+      "timestamp": "2025-03-04 11:00",
+      "assigned": "Kevin"
+    },
+    {
+      "id": "103",
+      "title": "Set up backend",
+      "description": "Set up the initial backend infrastructure",
+      "category": "dev backend",
+      "status": "to do",
+      "timestamp": "2025-03-04 12:00",
+      "assigned": "Kevina"
+    },
+    {
+      "id": "104",
+      "title": "Create API endpoints",
+      "description": "Develop the necessary API endpoints",
+      "category": "dev backend",
+      "status": "to do",
+      "timestamp": "2025-03-04 13:00",
+      "assigned": "Kevina"
+    },
+    {
+      "id": "105",
+      "title": "Integrate frontend with backend",
+      "description": "Integrate the frontend with the backend API",
+      "category": "dev frontend",
+      "status": "to do",
+      "timestamp": "2025-03-04 14:00",
+      "assigned": "Kevino"
+    },
+    {
+      "id": "106",
+      "title": "Test application",
+      "description": "Perform end-to-end testing of the application",
+      "category": "dev frontend",
+      "status": "to do",
+      "timestamp": "2025-03-04 15:00",
+      "assigned": "Kevino"
+    },
+    {
+      "id": "797f604e-3c20-4508-add5-a9998d0dc7c6",
+      "title": "BLah",
+      "description": "buk lao",
+      "category": "dev backend",
+      "status": "to do",
+      "timestamp": "2025-03-04 13:46"
+    }
+  ]
+}
