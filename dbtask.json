@@ -53,14 +53,6 @@
       "status": "to do",
       "timestamp": "2025-03-04 15:00",
       "assigned": "Kevino"
-    },
-    {
-      "id": "797f604e-3c20-4508-add5-a9998d0dc7c6",
-      "title": "BLah",
-      "description": "buk lao",
-      "category": "dev backend",
-      "status": "to do",
-      "timestamp": "2025-03-04 13:46"
     }
   ]
 }

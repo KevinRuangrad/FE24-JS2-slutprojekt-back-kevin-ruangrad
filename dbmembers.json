@@ -1,0 +1,35 @@
+{
+  "teamMembers": [
+    {
+      "id": "1",
+      "name": "Kevin",
+      "roles": [
+        "UX",
+        "dev frontend"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Kevina",
+      "roles": [
+        "dev backend"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Kevino",
+      "roles": [
+        "dev frontend",
+        "dev backend"
+      ]
+    },
+    {
+      "id": "9d179520-4b1b-406a-aea0-c2f6e467e2aa",
+      "name": "Adrian",
+      "roles": [
+        "dev frontend",
+        "dev backend"
+      ]
+    }
+  ]
+}
