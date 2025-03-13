@@ -3,29 +3,24 @@ import { format } from "date-fns";
 import { v4 as uuidv4 } from "uuid";
 import { TeamMember } from "../models/teamMember.js";
 import { Task } from "../models/taskmodel.js";
-import {
-  readTasksDB,
-  writeTasksDB,
-  readMembersDB,
-  writeMembersDB,
-} from "./dbUtils.js";
+import { readTasksDB, writeTasksDB, readMembersDB } from "./dbUtils.js";
 
-type Category = "UX" | "dev frontend" | "dev backend";
-type Status = "to do" | "in progress" | "done";
+export type Category = "UX" | "dev frontend" | "dev backend";
+export type Status = "to do" | "in progress" | "done";
 
 let tasks: Task[] = [];
 let teamMembers: TeamMember[] = [];
 
 (async () => {
   const initialTasksData = await readTasksDB();
-  tasks = initialTasksData.tasks;
+  tasks = initialTasksData;
   const initialMembersData = await readMembersDB();
-  teamMembers = initialMembersData.teamMembers;
+  teamMembers = initialMembersData;
   console.log(tasks);
 })();
 
 export const addTask = async (req: Request, res: Response): Promise<void> => {
-  const { title, description, category, status, assigned } = req.body;
+  const { title, description, category, status } = req.body;
 
   if (!title || !description || !category) {
     res.status(400).send("Task must have a title, description and category.");
@@ -37,14 +32,13 @@ export const addTask = async (req: Request, res: Response): Promise<void> => {
     id: uuidv4(),
     title,
     description,
-    category,
-    status: "to do",
+    category: category as Category,
+    status: status as Status,
     timestamp: formattedDate,
-    assigned: assigned || undefined,
   };
   tasks.push(newTask);
 
-  await writeTasksDB({ tasks });
+  await writeTasksDB(tasks);
 
   res.status(201).send(newTask);
 };
@@ -63,14 +57,14 @@ export const updateTask = async (
   }
 
   if (status) {
-    task.status = status;
+    task.status = status as Status;
   }
 
   if (assigned) {
     task.assigned = assigned;
   }
 
-  await writeTasksDB({ tasks });
+  await writeTasksDB(tasks);
 
   res.status(200).send(task);
 };
@@ -94,7 +88,7 @@ export const deleteTask = async (
 
   tasks.splice(taskIndex, 1);
 
-  await writeTasksDB({ tasks });
+  await writeTasksDB(tasks);
 
   res.status(200).send({ message: "Task deleted successfully" });
 };
@@ -102,25 +96,33 @@ export const deleteTask = async (
 export const addTaskToMember = async (
   req: Request,
   res: Response
-): Promise<void> => {
+): Promise<Task | any> => {
   const { memberId } = req.body;
   const { taskId } = req.params;
+  const tasks = await readTasksDB();
+  const task = tasks.find((task) => task.id === taskId);
+  const members = await readMembersDB();
+  const member = members.find((member) => member.id === memberId);
 
-  const teamMember = teamMembers.find((member) => member.id === memberId);
-  if (!teamMember) {
-    res.status(404).send({ message: "Team member not found" });
-    return;
+  if (
+    task &&
+    member &&
+    member.roles.includes((task.category as "ux") || "backend" || "frontend")
+  ) {
+    task.assigned = memberId;
+    task.status = "in progress";
+    await writeTasksDB(tasks);
   }
 
-  const task = tasks.find((task) => task.id === taskId);
   if (!task) {
     res.status(404).send({ message: "Task not found" });
     return;
   }
 
   task.assigned = memberId;
+  task.status = "in progress";
 
-  await writeTasksDB({ tasks });
+  await writeTasksDB(tasks);
 
   res.status(200).send(task);
 };
@@ -129,7 +131,7 @@ export const markTaskAsCompleted = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const { taskId } = req.body;
+  const { taskId } = req.params; // Get taskId from req.params
 
   const task = tasks.find((task) => task.id === taskId);
   if (!task) {
@@ -139,7 +141,7 @@ export const markTaskAsCompleted = async (
 
   task.status = "done";
 
-  await writeTasksDB({ tasks });
+  await writeTasksDB(tasks);
 
   res.status(200).send({ message: "Task marked as completed", task });
 };
@@ -148,7 +150,7 @@ export const deleteCompletedTask = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const { taskId } = req.body;
+  const { taskId } = req.params;
 
   const taskIndex = tasks.findIndex((task) => task.id === taskId);
   if (taskIndex === -1) {
@@ -158,7 +160,7 @@ export const deleteCompletedTask = async (
 
   tasks.splice(taskIndex, 1);
 
-  await writeTasksDB({ tasks });
+  await writeTasksDB(tasks);
 
   res.status(200).send({ message: "Task deleted successfully" });
 };

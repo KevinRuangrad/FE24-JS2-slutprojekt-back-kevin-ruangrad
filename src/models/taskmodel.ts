@@ -1,9 +1,11 @@
+import { Category, Status } from "../controlles/tasks.js"
+
 export interface Task {
   id: string;
   title: string;
   description: string;
-  category: string;
-  status: string;
+  category: Category;
+  status: Status;
   timestamp: string;
   assigned?: string;
 }

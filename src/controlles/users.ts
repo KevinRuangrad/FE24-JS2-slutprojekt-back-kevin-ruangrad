@@ -7,7 +7,7 @@ let teamMembers: TeamMember[] = [];
 
 (async () => {
   const initialData = await readMembersDB();
-  teamMembers = initialData.teamMembers;
+  teamMembers = initialData;
 })();
 
 export const addTeamMember = async (
@@ -26,7 +26,7 @@ export const addTeamMember = async (
   const newMember: TeamMember = { id: uuidv4(), name, roles };
   teamMembers.push(newMember);
 
-  await writeMembersDB({ teamMembers });
+  await writeMembersDB(teamMembers);
 
   res.status(201).send(newMember);
 };

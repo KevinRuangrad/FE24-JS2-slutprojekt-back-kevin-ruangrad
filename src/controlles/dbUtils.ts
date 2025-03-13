@@ -6,24 +6,24 @@ import { TeamMember } from "../models/teamMember.js";
 const tasksDataPath = "./dbtask.json";
 const membersDataPath = "./dbmembers.json";
 
-export async function readTasksDB() {
+export async function readTasksDB(): Promise<Task[]> {
   const raw = await fs.readFile(tasksDataPath, "utf-8");
-  const db = JSON.parse(raw);
-  return db;
+  const tasks = JSON.parse(raw);
+  return Array.isArray(tasks) ? tasks : [];
 }
 
-export async function writeTasksDB(db: { tasks: Task[] }) {
-  const newDB = JSON.stringify(db, null, 2);
+export async function writeTasksDB(tasks: Task[]): Promise<void> {
+  const newDB = JSON.stringify(tasks, null, 2);
   await fs.writeFile(tasksDataPath, newDB);
 }
 
-export async function readMembersDB() {
+export async function readMembersDB(): Promise<TeamMember[]> {
   const raw = await fs.readFile(membersDataPath, "utf-8");
-  const db = JSON.parse(raw);
-  return db;
+  const members = JSON.parse(raw);
+  return Array.isArray(members) ? members : [];
 }
 
-export async function writeMembersDB(db: { teamMembers: TeamMember[] }) {
-  const newDB = JSON.stringify(db, null, 2);
+export async function writeMembersDB(members: TeamMember[]): Promise<void> {
+  const newDB = JSON.stringify(members, null, 2);
   await fs.writeFile(membersDataPath, newDB);
 }
