@@ -1,13 +1,5 @@
 [
   {
-    "id": "102",
-    "title": "Implement homepage",
-    "description": "Develop the homepage based on the design",
-    "category": "dev frontend",
-    "status": "to do",
-    "timestamp": "2025-03-04 11:00"
-  },
-  {
     "id": "103",
     "title": "Set up backend",
     "description": "Set up the initial backend infrastructure",
@@ -25,26 +17,34 @@
   },
   {
     "id": "105",
-    "title": "Complete project documentation",
-    "description": "Write the documentation for the final project including setup instructions and usage examples.",
-    "category": "documentation",
+    "title": "Implement homepage",
+    "description": "Develop the homepage based on the design",
+    "category": "dev frontend",
     "status": "to do",
     "timestamp": "2025-03-04 14:00"
   },
   {
     "id": "106",
-    "title": "Implement authentication",
-    "description": "Add user authentication using JWT tokens.",
-    "category": "dev backend",
+    "title": "Create user profile page",
+    "description": "Develop the user profile page with editable fields",
+    "category": "dev frontend",
     "status": "to do",
     "timestamp": "2025-03-04 15:00"
   },
   {
     "id": "107",
-    "title": "Set up database",
-    "description": "Configure and set up the PostgreSQL database for the project.",
-    "category": "dev backend",
+    "title": "Fix the buttons",
+    "description": "Change the buttons to match the new design",
+    "category": "ux",
     "status": "to do",
     "timestamp": "2025-03-04 16:00"
+  },
+  {
+    "id": "108",
+    "title": "Improve navigation",
+    "description": "Enhance the navigation menu for better user experience",
+    "category": "ux",
+    "status": "to do",
+    "timestamp": "2025-03-04 17:00"
   }
 ]

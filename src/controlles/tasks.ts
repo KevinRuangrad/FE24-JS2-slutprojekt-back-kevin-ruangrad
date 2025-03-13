@@ -107,7 +107,9 @@ export const addTaskToMember = async (
   if (
     task &&
     member &&
-    member.roles.includes((task.category as "ux") || "backend" || "frontend")
+    member.roles.includes(
+      (task.category as "ux") || "dev backend" || "dev frontend"
+    )
   ) {
     task.assigned = memberId;
     task.status = "in progress";
