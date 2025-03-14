@@ -113,6 +113,7 @@ export const addTaskToMember = async (
   ) {
     task.assigned = memberId;
     task.status = "in progress";
+    console.log("task is in progress", task, task.status);
     await writeTasksDB(tasks);
   }
 
@@ -120,11 +121,6 @@ export const addTaskToMember = async (
     res.status(404).send({ message: "Task not found" });
     return;
   }
-
-  task.assigned = memberId;
-  task.status = "in progress";
-
-  await writeTasksDB(tasks);
 
   res.status(200).send(task);
 };
