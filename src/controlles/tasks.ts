@@ -11,14 +11,15 @@ export type Status = "to do" | "in progress" | "done";
 let tasks: Task[] = [];
 let teamMembers: TeamMember[] = [];
 
+// Initialize tasks and team members from the database
 (async () => {
   const initialTasksData = await readTasksDB();
   tasks = initialTasksData;
   const initialMembersData = await readMembersDB();
   teamMembers = initialMembersData;
-  // console.log(tasks);
 })();
 
+// Add a new task
 export const addTask = async (req: Request, res: Response): Promise<void> => {
   const { title, description, category, status } = req.body;
 
@@ -43,6 +44,7 @@ export const addTask = async (req: Request, res: Response): Promise<void> => {
   res.status(201).send(newTask);
 };
 
+// Update an existing task
 export const updateTask = async (
   req: Request,
   res: Response
@@ -69,11 +71,13 @@ export const updateTask = async (
   res.status(200).send(task);
 };
 
+// Get all tasks
 export const getTasks = async (req: Request, res: Response): Promise<void> => {
   res.send(tasks);
   return;
 };
 
+// Delete a task
 export const deleteTask = async (
   req: Request,
   res: Response
@@ -93,6 +97,7 @@ export const deleteTask = async (
   res.status(200).send({ message: "Task deleted successfully" });
 };
 
+// Assign a task to a team member
 export const addTaskToMember = async (
   req: Request,
   res: Response
@@ -104,8 +109,6 @@ export const addTaskToMember = async (
   const members = await readMembersDB();
   const member = members.find((member) => member.id === assigned);
 
-  console.log(task, member, assigned);
-
   if (
     task &&
     member &&
@@ -115,7 +118,6 @@ export const addTaskToMember = async (
   ) {
     task.assigned = assigned;
     task.status = "in progress";
-    // console.log("task is in progress", task, task.status);
     await writeTasksDB(tasksFromDB);
     tasks = tasksFromDB; // Update the global tasks array
   }
@@ -128,6 +130,7 @@ export const addTaskToMember = async (
   res.status(200).send(task);
 };
 
+// Mark a task as completed
 export const markTaskAsCompleted = async (
   req: Request,
   res: Response
@@ -147,6 +150,7 @@ export const markTaskAsCompleted = async (
   res.status(200).send({ message: "Task marked as completed", task });
 };
 
+// Delete a completed task
 export const deleteCompletedTask = async (
   req: Request,
   res: Response

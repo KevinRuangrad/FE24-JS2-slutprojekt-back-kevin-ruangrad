@@ -5,11 +5,13 @@ import { readMembersDB, writeMembersDB } from "./dbUtils.js";
 
 let teamMembers: TeamMember[] = [];
 
+// Initialize team members from the database
 (async () => {
   const initialData = await readMembersDB();
   teamMembers = initialData;
 })();
 
+// Add a new team member
 export const addTeamMember = async (
   req: Request,
   res: Response
@@ -31,6 +33,7 @@ export const addTeamMember = async (
   res.status(201).send(newMember);
 };
 
+// Get all team members
 export const getTeamMembers = async (
   req: Request,
   res: Response
