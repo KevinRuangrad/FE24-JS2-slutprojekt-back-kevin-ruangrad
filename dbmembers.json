@@ -2,16 +2,33 @@
   {
     "id": "1",
     "name": "Kevin",
-    "roles": ["ux", "dev frontend"]
+    "roles": [
+      "ux",
+      "dev frontend"
+    ]
   },
   {
     "id": "2",
     "name": "Alan",
-    "roles": ["dev backend"]
+    "roles": [
+      "dev backend"
+    ]
   },
   {
     "id": "3",
     "name": "Amin",
-    "roles": ["dev frontend", "dev backend"]
+    "roles": [
+      "dev frontend",
+      "dev backend"
+    ]
+  },
+  {
+    "id": "14e86612-1dbf-43ef-ad8e-757360451022",
+    "name": "Adrian",
+    "roles": [
+      "ux",
+      "dev frontend",
+      "dev backend"
+    ]
   }
 ]

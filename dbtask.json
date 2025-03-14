@@ -4,8 +4,9 @@
     "title": "Set up backend",
     "description": "Set up the initial backend infrastructure",
     "category": "dev backend",
-    "status": "to do",
-    "timestamp": "2025-03-04 12:00"
+    "status": "in progress",
+    "timestamp": "2025-03-04 12:00",
+    "assigned": "14e86612-1dbf-43ef-ad8e-757360451022"
   },
   {
     "id": "104",
