@@ -16,7 +16,7 @@ let teamMembers: TeamMember[] = [];
   tasks = initialTasksData;
   const initialMembersData = await readMembersDB();
   teamMembers = initialMembersData;
-  console.log(tasks);
+  // console.log(tasks);
 })();
 
 export const addTask = async (req: Request, res: Response): Promise<void> => {
@@ -97,12 +97,14 @@ export const addTaskToMember = async (
   req: Request,
   res: Response
 ): Promise<Task | any> => {
-  const { memberId } = req.body;
+  const { assigned } = req.body;
   const { taskId } = req.params;
   const tasksFromDB = await readTasksDB();
   const task = tasksFromDB.find((task) => task.id === taskId);
   const members = await readMembersDB();
-  const member = members.find((member) => member.id === memberId);
+  const member = members.find((member) => member.id === assigned);
+
+  console.log(task, member, assigned);
 
   if (
     task &&
@@ -111,9 +113,9 @@ export const addTaskToMember = async (
       (task.category as "ux") || "dev backend" || "dev frontend"
     )
   ) {
-    task.assigned = memberId;
+    task.assigned = assigned;
     task.status = "in progress";
-    console.log("task is in progress", task, task.status);
+    // console.log("task is in progress", task, task.status);
     await writeTasksDB(tasksFromDB);
     tasks = tasksFromDB; // Update the global tasks array
   }
