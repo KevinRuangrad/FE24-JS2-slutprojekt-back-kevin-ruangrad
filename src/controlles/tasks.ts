@@ -99,8 +99,8 @@ export const addTaskToMember = async (
 ): Promise<Task | any> => {
   const { memberId } = req.body;
   const { taskId } = req.params;
-  const tasks = await readTasksDB();
-  const task = tasks.find((task) => task.id === taskId);
+  const tasksFromDB = await readTasksDB();
+  const task = tasksFromDB.find((task) => task.id === taskId);
   const members = await readMembersDB();
   const member = members.find((member) => member.id === memberId);
 
@@ -114,7 +114,8 @@ export const addTaskToMember = async (
     task.assigned = memberId;
     task.status = "in progress";
     console.log("task is in progress", task, task.status);
-    await writeTasksDB(tasks);
+    await writeTasksDB(tasksFromDB);
+    tasks = tasksFromDB; // Update the global tasks array
   }
 
   if (!task) {
